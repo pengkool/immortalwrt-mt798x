@@ -221,17 +221,17 @@
  				read-only;
  			};
 
- 			Factory: partition@160000 {
- 				label = "Factory";
- 				reg = <0x160000 0x00a0000>;
- 				read-only;
- 			};
+ 			factory: partition@160000 {
+				label = "factory";
+				reg = <0x160000 0x0060000>;
+				read-only;
+			};
 
- 			partition@200000 {
- 				label = "reserved";
- 				reg = <0x200000 0x0180000>;
- 				read-only;
- 			};
+			partition@1c0000 {
+				label = "reserved";
+				reg = <0x1c0000 0x01c0000>;
+				read-only;
+			};
 
  			partition@380000 {
  				label = "fip";
