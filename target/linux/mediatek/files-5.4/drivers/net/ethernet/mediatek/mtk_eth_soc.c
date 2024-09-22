@@ -1416,10 +1416,10 @@ static int mtk_poll_rx(struct napi_struct *napi, int budget,
 		
 #if defined(CONFIG_MEDIATEK_NETSYS_RX_V2)
 			if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_RX_V2))
-				mac = (RX_DMA_GET_CRSN(trxd.rxd5) == HIT_BIND_FORCE_TO_CPU) ? 1 : mac;
+				mac = (RX_DMA_GET_CRSN(trxd.rxd5) == 0x16) ? 1 : mac;
 			else
 #endif
-				mac = (RX_DMA_GET_CRSN(trxd.rxd4) == HIT_BIND_FORCE_TO_CPU) ? 1 : mac;
+				mac = (RX_DMA_GET_CRSN(trxd.rxd4) == 0x16) ? 1 : mac;
  
 		
  
@@ -1509,7 +1509,7 @@ static int mtk_poll_rx(struct napi_struct *napi, int budget,
 		skb_hnat_filled(skb) = 0;
 		skb_hnat_magic_tag(skb) = HNAT_MAGIC_TAG;
 
-		if (skb_hnat_reason(skb) == HIT_BIND_FORCE_TO_CPU) {
+		if (skb_hnat_reason(skb) == 0x16) {
 			trace_printk("[%s] reason=0x%x(force to CPU) from WAN to Ext\n",
 				     __func__, skb_hnat_reason(skb));
 			skb->pkt_type = PACKET_HOST; 
